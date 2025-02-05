@@ -232,6 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (context, index) {
                           final filter = filterList[index];
                           return FilterItemWidget(
+                            index: index,
                             filter: filter,
                             onPressed: () {
                               setState(() {
