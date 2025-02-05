@@ -49,9 +49,7 @@ class _FilterItemStateWidget extends State<FilterItemWidget> {
                       width: 14,
                       height: 14,
                       child: SvgPicture.asset(
-                        widget.filter.isSelected
-                            ? AppIcons.filterWhiteIcon
-                            : AppIcons.filterBlackIcon,
+                        AppIcons.filterIcon
                       ),
                     ),
                     SizedBox(width: 8),

@@ -36,8 +36,7 @@ flutter:
     # Icons path
     - lib/assets/icons/arrow-down-icon.svg
     - lib/assets/icons/calendar-icon.svg
-    - lib/assets/icons/filter-black-icon.svg
-    - lib/assets/icons/filter-white-icon.svg
+    - lib/assets/icons/filter-icon.svg
     - lib/assets/icons/flash-icon.svg
     - lib/assets/icons/search-icon.svg
     - lib/assets/icons/menu-icon.svg
