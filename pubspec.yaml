@@ -1,0 +1,57 @@
+name: flutter_technical_test_motel_list
+description: "Flutter technical testing project to create a motel listing app."
+
+# Prevents accidental publishing to pub.dev
+publish_to: 'none' # Remove this line if you want to publish to pub.dev
+
+# Project version (used for version control)
+version: 1.0.0+1
+
+# SDK definition
+environment:
+  sdk: ^3.6.1
+
+# Project dependencies
+dependencies:
+  flutter:
+    sdk: flutter
+  # iOS icon library
+  cupertino_icons: ^1.0.8
+
+# Development dependencies
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_svg: ^2.0.10+1
+
+# Flutter specific configurations
+flutter:
+  # Includes Material Icons
+  uses-material-design: true
+
+  # Defining assets for images
+  assets:
+    # Icons path
+    - lib/assets/icons/arrow-down-icon.svg
+    - lib/assets/icons/calendar-icon.svg
+    - lib/assets/icons/flash-icon.svg
+    - lib/assets/icons/search-icon.svg
+    - lib/assets/icons/menu-icon.svg
+
+  # Defining custom fonts
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: lib/assets/fonts/OpenSans-Light.ttf
+          weight: 300
+        - asset: lib/assets/fonts/OpenSans-Regular.ttf
+          weight: 400
+        - asset: lib/assets/fonts/OpenSans-Medium.ttf
+          weight: 500
+        - asset: lib/assets/fonts/OpenSans-SemiBold.ttf
+          weight: 600
+        - asset: lib/assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+        - asset: lib/assets/fonts/OpenSans-ExtraBold.ttf
+          weight: 800
