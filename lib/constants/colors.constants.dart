@@ -16,11 +16,14 @@ class AppColors {
   static const Color primary50 = Color(0xFFF6B3BF);
   static const Color primary25 = Color(0xFFF9D1D3);
 
+  static const Color secoundary = Color(0xFFE1E1E1);
+
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
-  static const Color gray = Color(0xFF6A6A6A);
+  static const Color gray = Color(0xFFF7F8FA);
   static const Color text = Color(0xFF3D3D3D);
   static const Color error = Color(0xFFFF3B30);
+  static const Color background = Color(0xFFEFF1F0);
 
   static const LinearGradient primaryGradient = LinearGradient(
     colors: [

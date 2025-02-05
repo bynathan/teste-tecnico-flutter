@@ -3,6 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/fonts.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/icons.constants.dart';
+import 'package:flutter_sticky_header/flutter_sticky_header.dart';
+import 'package:flutter_technical_test_motel_list/core/models/filter.model.dart';
+import 'package:flutter_technical_test_motel_list/widgets/filter.widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,8 +15,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Filter> filterList = [
+    Filter(id: 0, name: 'filtros'),
+    Filter(id: 1, name: 'com desconto'),
+    Filter(id: 2, name: 'disponíveis'),
+    Filter(id: 3, name: 'hidro'),
+    Filter(id: 4, name: 'piscina'),
+    Filter(id: 5, name: 'sauna'),
+    Filter(id: 6, name: 'ofurô'),
+    Filter(id: 7, name: 'decoração erótica'),
+    Filter(id: 8, name: 'decoração temática'),
+    Filter(id: 9, name: 'cadeira erótica'),
+    Filter(id: 10, name: 'pista de dança'),
+    Filter(id: 11, name: 'garagem privativa'),
+    Filter(id: 12, name: 'frigobar'),
+    Filter(id: 13, name: 'internet wi-fi'),
+    Filter(id: 13, name: 'suíte para festas'),
+    Filter(id: 13, name: 'suíte com acessibilidade'),
+  ];
+
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    double screenHeight = screenSize.height;
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primary,
@@ -33,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
             borderRadius: BorderRadius.circular(44),
             child: ConstrainedBox(
               constraints: BoxConstraints(
-                maxWidth: 350,
+                maxWidth: 300,
                 minWidth: 240,
               ),
               child: Container(
@@ -138,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: CustomPaint(
               painter: DashedBorderPainter(),
               child: Container(
-                padding: EdgeInsets.only(bottom: 10),
+                padding: EdgeInsets.only(bottom: 6),
                 margin: EdgeInsets.only(top: 20),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -162,12 +187,80 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: SvgPicture.asset(
                         AppIcons.arrowDownIcon,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
-          )
+          ),
+          Container(
+            width: double.infinity,
+            height: screenHeight - 155,
+            margin: EdgeInsets.only(top: 22),
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(
+              color: AppColors.background,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+            ),
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Container(height: 200, width: 200, color: Colors.orange),
+                ),
+                SliverStickyHeader(
+                  header: Container(
+                    padding: EdgeInsets.symmetric(vertical: 15),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: AppColors.background,
+                      border: Border(
+                        bottom: BorderSide(
+                          width: 1,
+                          color: AppColors.secoundary
+                        )
+                      )
+                    ),
+                    child: SizedBox(
+                      height: 40,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: filterList.length,
+                        padding: EdgeInsets.symmetric(horizontal: 15),
+                        itemBuilder: (context, index) {
+                          final filter = filterList[index];
+                          return FilterItemWidget(
+                            filter: filter,
+                            onPressed: () {
+                              setState(() {
+                                filter.isSelected = !filter.isSelected;
+                              });
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  sliver: SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                          child: Text(
+                            'teste ${index + 1}',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                        );
+                      },
+                      childCount: 50,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
