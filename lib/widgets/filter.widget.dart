@@ -30,7 +30,7 @@ class _FilterItemStateWidget extends State<FilterItemWidget> {
           },
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 300),
-            height: 30,
+            height: 28,
             padding: const EdgeInsets.symmetric(horizontal: 14),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),

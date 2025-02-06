@@ -34,7 +34,8 @@ flutter:
   # Defining assets for images
   assets:
     # Icons path
-    - lib/assets/icons/arrow-down-icon.svg
+    - lib/assets/icons/arrow-down-gray-icon.svg
+    - lib/assets/icons/arrow-down-white-icon.svg
     - lib/assets/icons/calendar-icon.svg
     - lib/assets/icons/filter-icon.svg
     - lib/assets/icons/flash-icon.svg

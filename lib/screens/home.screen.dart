@@ -38,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     double screenHeight = screenSize.height;
+    double screenWidth = screenSize.width;
     
     return Scaffold(
       appBar: AppBar(
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 minWidth: 240,
               ),
               child: Container(
-                height: 44,
+                height: 40,
                 color: AppColors.primary900,
                 child: Row(
                   children: [
@@ -83,13 +84,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   AppIcons.flashIcon,
                                 ),
                               ),
-                              SizedBox(width: 10),
+                              SizedBox(width: 8),
                               Flexible(
                                 child: Text(
                                   'ir agora',
                                   style: TextStyle(
                                     fontSize: 16,
-                                    fontWeight: AppFontWeight.bold,
+                                    fontWeight: AppFontWeight.semiBold,
                                     color: AppColors.text,
                                   ),
                                   overflow: TextOverflow.ellipsis,
@@ -163,16 +164,16 @@ class _HomeScreenState extends State<HomeScreen> {
             child: CustomPaint(
               painter: DashedBorderPainter(),
               child: Container(
-                padding: EdgeInsets.only(bottom: 6),
-                margin: EdgeInsets.only(top: 20),
+                padding: EdgeInsets.only(bottom: 5),
+                margin: EdgeInsets.only(top: 15),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'zona norte',
+                      'zona norte'.toLowerCase(),
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 13,
                         fontWeight: AppFontWeight.semiBold,
                         color: AppColors.white,
                       ),
@@ -185,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 12,
                       margin: EdgeInsets.only(top: 4),
                       child: SvgPicture.asset(
-                        AppIcons.arrowDownIcon,
+                        AppIcons.arrowDownWhiteIcon,
                       ),
                     ),
                   ],
@@ -193,77 +194,265 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          Container(
-            width: double.infinity,
-            height: screenHeight - 155,
-            margin: EdgeInsets.only(top: 22),
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              color: AppColors.background,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(16),
-                topRight: Radius.circular(16),
-              ),
-            ),
-            child: CustomScrollView(
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Container(height: 200, width: 200, color: Colors.orange),
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              margin: EdgeInsets.only(top: 20),
+              clipBehavior: Clip.antiAlias,
+              decoration: BoxDecoration(
+                color: AppColors.background,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
                 ),
-                SliverStickyHeader(
-                  header: Container(
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: AppColors.background,
-                      border: Border(
-                        bottom: BorderSide(
-                          width: 1,
-                          color: AppColors.secoundary
+              ),
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Container(height: 200, width: 200, color: Colors.orange),
+                  ),
+                  SliverStickyHeader(
+                    header: Container(
+                      padding: EdgeInsets.symmetric(vertical: 13),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: AppColors.background,
+                        border: Border(
+                          bottom: BorderSide(
+                            width: 1,
+                            color: AppColors.secoundary
+                          )
                         )
-                      )
+                      ),
+                      child: SizedBox(
+                        height: 40,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: filterList.length,
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          itemBuilder: (context, index) {
+                            final filter = filterList[index];
+                            return FilterItemWidget(
+                              index: index,
+                              filter: filter,
+                              onPressed: () {
+                                setState(() {
+                                  filter.isSelected = !filter.isSelected;
+                                });
+                              },
+                            );
+                          },
+                        ),
+                      ),
                     ),
-                    child: SizedBox(
-                      height: 40,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: filterList.length,
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        itemBuilder: (context, index) {
-                          final filter = filterList[index];
-                          return FilterItemWidget(
-                            index: index,
-                            filter: filter,
-                            onPressed: () {
-                              setState(() {
-                                filter.isSelected = !filter.isSelected;
-                              });
-                            },
+                    sliver: SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          return Container(
+                            margin: EdgeInsets.only(top: 20),
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            child: Column(
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      margin: EdgeInsets.only(top: 7),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(40),
+                                        child: Container(
+                                          width: 40,
+                                          height: 40,
+                                          child: Image.network(
+                                            'https://cf.bstatic.com/xdata/images/hotel/max1024x768/559777818.jpg?k=f972deb0673962ad4628773dbb3f6465770734a64130e4ddc56dbc38d2376999&o=&hp=1',
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(width: 15),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: screenWidth - 140,
+                                          child: Stack(
+                                            children: [
+                                              FittedBox(
+                                                fit: BoxFit.scaleDown,
+                                                child: Text(
+                                                  'hotel estrela da água'.toLowerCase(),
+                                                  style: TextStyle(
+                                                    fontSize: 28,
+                                                    fontWeight: AppFontWeight.regular,
+                                                    color: AppColors.text,
+                                                    height: 1.3,
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                top: 0,
+                                                right: 0,
+                                                child: Container(
+                                                  width: 40,
+                                                  height: 40,
+                                                  decoration: BoxDecoration(
+                                                    gradient: LinearGradient(
+                                                      colors: [
+                                                        Color.fromARGB(51, 239, 241, 240),
+                                                        AppColors.background,
+                                                        AppColors.background,
+                                                      ],
+                                                      stops: [0, 0.6, 1.0],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          child: Text(
+                                            'santana - são paulo'.toLowerCase(),
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: AppFontWeight.regular,
+                                              color: AppColors.text,
+                                              height: 1
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                          ),
+                                        ),
+                                        SizedBox(height: 10),
+                                        Row(
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.fromLTRB(3, 1, 5, 0),
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                  color: AppColors.yellow,
+                                                  width: 1
+                                                ),
+                                                borderRadius: BorderRadius.circular(7)
+                                              ),
+                                              child: Row(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Icon(
+                                                    Icons.star,
+                                                    color: AppColors.yellow,
+                                                    size: 16,
+                                                  ),
+                                                  SizedBox(width: 2),
+                                                  Text(
+                                                    '4.6',
+                                                    style: TextStyle(
+                                                      fontSize: 13,
+                                                      fontWeight: AppFontWeight.semiBold,
+                                                      color: AppColors.text,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(width: 10),
+                                            Row(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  '200 avalizações',
+                                                  style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight: AppFontWeight.semiBold,
+                                                    color: AppColors.text,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 6),
+                                                Container(
+                                                  width: 8,
+                                                  height: 8,
+                                                  margin: EdgeInsets.only(top: 5),
+                                                  child: SvgPicture.asset(
+                                                    AppIcons.arrowDownGrayIcon,
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(width: 15),
+                                    Container(
+                                      margin: EdgeInsets.only(top: 4),
+                                      child: Icon(
+                                        Icons.favorite,
+                                        color: false ? AppColors.primary : AppColors.secoundary900,
+                                        size: 32.0,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           );
                         },
+                        childCount: 50,
                       ),
                     ),
                   ),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        return Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                          child: Text(
-                            'teste ${index + 1}',
-                            style: TextStyle(fontSize: 16, color: Colors.black),
-                          ),
-                        );
-                      },
-                      childCount: 50,
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton:  Container(
+          width: 90,
+          height: 40,
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(40),
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromARGB(30, 0, 0, 0),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+          child: FloatingActionButton(
+            onPressed: () {},
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.map_outlined,
+                  color: AppColors.primary,
+                  size: 18,
+                ),
+                SizedBox(width: 3),
+                Container(
+                  margin: EdgeInsets.only(bottom: 3),
+                  child: Text(
+                    'mapa',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: AppColors.primary,
                     ),
                   ),
                 ),
               ],
             ),
           ),
-        ],
-      ),
+        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
