@@ -258,7 +258,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
                           return Container(
-                            margin: EdgeInsets.only(top: 17),
+                            margin: EdgeInsets.only(top: 25),
                             child: Column(
                               children: [
                                 Container(
@@ -408,12 +408,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 700,
+                                  height: 402 + (118 * 2), // POR AQUI NA INTEGRAÇÃO O LENGTH DE HORAS DAS SUITES
                                   child: PageView.builder(
                                     controller: _pageController,
                                     itemCount: images.length,
                                     itemBuilder: (context, index) {
                                       return Container(
+                                        height: 402 + (118 * 2),
                                         margin: index == (images.length - 1) ? EdgeInsets.only(right: 0) : EdgeInsets.only(right: 10),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
@@ -584,6 +585,65 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             ),
                                                           )
                                                         ],
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              )
+                                            ),
+                                            Container(
+                                              margin: EdgeInsets.only(bottom: 4),
+                                              decoration: BoxDecoration(
+                                                color: Colors.transparent,
+                                                borderRadius: BorderRadius.circular(40),
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Color.fromARGB(10, 0, 0, 0),
+                                                    spreadRadius: 2,
+                                                    blurRadius: 10,
+                                                    offset: Offset(0, 0),
+                                                  ),
+                                                ],
+                                              ),
+                                              child: ClipRRect(
+                                                borderRadius: BorderRadius.circular(10),
+                                                child: Container(
+                                                  padding: EdgeInsets.fromLTRB(25, 20, 20, 20),
+                                                  decoration: BoxDecoration(
+                                                    color: AppColors.white
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisSize: MainAxisSize.max,
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                                    children: [
+                                                      Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text(
+                                                            '3 horas',
+                                                            style: TextStyle(
+                                                              fontSize: 26,
+                                                              fontWeight: AppFontWeight.regular,
+                                                              color: AppColors.text,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            'R\$ 78,88',
+                                                            style: TextStyle(
+                                                              fontSize: 26,
+                                                              fontWeight: AppFontWeight.regular,
+                                                              color: AppColors.text,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(
+                                                        width: 20,
+                                                        height: 20,
+                                                        child: SvgPicture.asset(
+                                                          AppIcons.arrowRightGrayIcon,
+                                                        ),
                                                       )
                                                     ],
                                                   ),
