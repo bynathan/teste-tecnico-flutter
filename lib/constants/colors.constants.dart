@@ -19,6 +19,7 @@ class AppColors {
   static const Color secoundary = Color(0xFFE1E1E1);
   static const Color secoundary900 = Color(0xFFC2C2C2);
   static const Color secoundary800 = Color(0xFFF0F0F0);
+  static const Color secoundary700 = Color(0xFFF7F8FA);
   static const Color secoundary50 = Color(0xFF979596);
 
   static const Color white = Color(0xFFFFFFFF);

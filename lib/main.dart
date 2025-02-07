@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/fonts.constants.dart';
 import 'package:flutter_technical_test_motel_list/screens/home.screen.dart';
+import 'package:flutter_technical_test_motel_list/screens/map.screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.primary,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: MapScreen(title: 'Zona Norte',),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/fonts.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/icons.constants.dart';
+import 'package:flutter_technical_test_motel_list/screens/photos.screen.dart';
 import 'package:flutter_technical_test_motel_list/widgets/currency.widget.dart';
 
 class SuiteWidget extends StatefulWidget {
@@ -36,7 +37,7 @@ class _SuiteWidgetState extends State<SuiteWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _buildSuitePhoto(suite: suite),
+                _buildSuitePhoto(context, suite: suite),
                 _buildSuiteItems(suite: suite),
                 ...suite["periodos"].map((item) => _buildSuiteTimePrice(
                   time: item["tempoFormatado"], 
@@ -50,10 +51,31 @@ class _SuiteWidgetState extends State<SuiteWidget> {
     );
   }
 
-  Container _buildSuitePhoto({
+  Container _buildSuitePhoto(BuildContext context, {
     required Map<String, dynamic> suite
   }) {
     Size screenSize = MediaQuery.of(context).size;
+
+    void navigateToPhotoGridScreen(BuildContext context, List<String> imageUrls, String title) {
+      Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return PhotoGridScreen(imageUrls: imageUrls, title: title);
+          },
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
+            const curve = Curves.easeInOut;
+
+            var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            var offsetAnimation = animation.drive(tween);
+
+            return SlideTransition(position: offsetAnimation, child: child);
+          },
+        ),
+      );
+    }
 
     return Container(
       margin: EdgeInsets.only(bottom: 4),
@@ -80,12 +102,15 @@ class _SuiteWidgetState extends State<SuiteWidget> {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: SizedBox(
-                  height: 225,
-                  width: double.infinity,
-                  child: Image.network(
-                    suite['fotos'][0],
-                    fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () => navigateToPhotoGridScreen(context, suite["fotos"], suite["nome"].toLowerCase()),
+                  child: SizedBox(
+                    height: 225,
+                    width: double.infinity,
+                    child: Image.network(
+                      suite['fotos'][0],
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
