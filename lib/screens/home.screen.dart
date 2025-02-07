@@ -1148,13 +1148,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Expanded _buildScroll() {
-    double bottomPadding = MediaQuery.of(context).padding.bottom;
-
     return Expanded(
       child: Container(
         width: double.infinity,
         margin: EdgeInsets.only(top: 20),
-        padding: EdgeInsets.only(bottom: bottomPadding),
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: AppColors.background,

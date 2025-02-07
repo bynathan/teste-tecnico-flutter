@@ -36,6 +36,8 @@ flutter:
 
   # Defining assets for images
   assets:
+    # Image Path
+    - lib/assets/images/splash-logo.png
     # Icons path
     - lib/assets/icons/arrow-down-gray-icon.svg
     - lib/assets/icons/arrow-down-gray-light-icon.svg

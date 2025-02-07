@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/fonts.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/icons.constants.dart';
+import 'package:flutter_technical_test_motel_list/screens/items.screen.dart';
 import 'package:flutter_technical_test_motel_list/screens/photos.screen.dart';
 import 'package:flutter_technical_test_motel_list/widgets/currency.widget.dart';
 
@@ -38,7 +39,7 @@ class _SuiteWidgetState extends State<SuiteWidget> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 _buildSuitePhoto(context, suite: suite),
-                _buildSuiteItems(suite: suite),
+                _buildSuiteItems(context, suite: suite),
                 ...suite["periodos"].map((item) => _buildSuiteTimePrice(
                   time: item["tempoFormatado"], 
                   price: item["valor"]
@@ -198,60 +199,84 @@ class _SuiteWidgetState extends State<SuiteWidget> {
     );
   }
 
-  Container _buildSuiteItems({
+  GestureDetector _buildSuiteItems(BuildContext context, {
     required Map<String, dynamic> suite
   }) {
-    return Container(
-      width: double.infinity,
-      margin: EdgeInsets.only(bottom: 4),
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(40),
-        boxShadow: [
-          BoxShadow(
-            color: Color.fromARGB(10, 0, 0, 0),
-            spreadRadius: 2,
-            blurRadius: 10,
-            offset: Offset(0, 0),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Container(
-          padding: EdgeInsets.fromLTRB(8, 20, 8, 22),
-          decoration: BoxDecoration(
-            color: AppColors.white
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ...suite["categoriaItens"].take(4).map((item) => _buildItem(icon: item["icone"])).toList(),
-              Row(
-                children: [
-                  Text(
-                    'ver \n todos',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: AppFontWeight.semiBold,
-                      color: AppColors.secoundary50,
+    void navigateToItemsScreen(BuildContext context, List<Map<String, dynamic>> mainItems, List<Map<String, dynamic>> items, String name) {
+      Navigator.push(
+        context,
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) {
+            return ItemsScreen(mainItems: mainItems, items: items, name: name,);
+          },
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
+            const curve = Curves.easeInOut;
+
+            var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            var offsetAnimation = animation.drive(tween);
+
+            return SlideTransition(position: offsetAnimation, child: child);
+          },
+        ),
+      );
+    }
+
+    return GestureDetector(
+      onTap: () => navigateToItemsScreen(context, suite["categoriaItens"], suite["itens"], suite["nome"]),
+      child: Container(
+        width: double.infinity,
+        margin: EdgeInsets.only(bottom: 4),
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(40),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromARGB(10, 0, 0, 0),
+              spreadRadius: 2,
+              blurRadius: 10,
+              offset: Offset(0, 0),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Container(
+            padding: EdgeInsets.fromLTRB(8, 20, 8, 22),
+            decoration: BoxDecoration(
+              color: AppColors.white
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ...suite["categoriaItens"].take(4).map((item) => _buildItem(icon: item["icone"])).toList(),
+                Row(
+                  children: [
+                    Text(
+                      'ver \n todos',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: AppFontWeight.semiBold,
+                        color: AppColors.secoundary50,
+                      ),
+                      textAlign: TextAlign.right,
                     ),
-                    textAlign: TextAlign.right,
-                  ),
-                  SizedBox(width: 10),
-                  SizedBox(
-                    width: 10,
-                    height: 10,
-                    child: SvgPicture.asset(
-                      AppIcons.arrowDownGrayLightIcon,
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
+                    SizedBox(width: 10),
+                    SizedBox(
+                      width: 10,
+                      height: 10,
+                      child: SvgPicture.asset(
+                        AppIcons.arrowDownGrayLightIcon,
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          )
         )
-      )
+      ),
     );
   }
 

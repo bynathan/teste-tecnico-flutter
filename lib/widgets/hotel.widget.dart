@@ -23,8 +23,10 @@ class _HotelWidgetState extends State<HotelWidget> {
 
   @override
   Widget build(BuildContext context) {
+    double bottomPadding = MediaQuery.of(context).padding.bottom;
+    
     return Container(
-      margin: EdgeInsets.only(top: 25),
+      margin: EdgeInsets.only(top: 25, bottom: bottomPadding),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
       ),
