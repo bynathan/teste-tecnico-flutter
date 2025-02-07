@@ -1,11 +1,11 @@
 class Suite {
-  final int quantity;                                  // Quantidade de suítes
-  final String name;                                   // Nome da suíte
-  final List<String> photos;                           // Lista de URLs das fotos
-  final List<Map<String, dynamic>> items;              // Itens da suíte
-  final List<Map<String, dynamic>> periods;            // Períodos de disponibilidade
-  final List<Map<String, dynamic>> categoryItems;      // Categorias dos itens
-  final bool showAvailableQuantity;                    // Exibir quantidade disponível
+  final int quantity;
+  final String name;
+  final List<String> photos;
+  final List<Map<String, dynamic>> items;
+  final List<Map<String, dynamic>> periods;
+  final List<Map<String, dynamic>> categoryItems;
+  final bool showAvailableQuantity;
 
   Suite({
     required this.quantity,
@@ -22,10 +22,22 @@ class Suite {
       quantity: map['quantity'] ?? 0,
       name: map['name'] ?? '',
       photos: List<String>.from(map['photos'] ?? []),
-      items: (map['items'] as List?)?.map((e) => Map<String, dynamic>.from(e)).toList() ?? [],
-      periods: (map['periods'] as List?)?.map((e) => Map<String, dynamic>.from(e)).toList() ?? [],
-      categoryItems: (map['categoryItems'] as List?)?.map((e) => Map<String, dynamic>.from(e)).toList() ?? [],
+      items: (map['items'] as List?)?.map((e) => Map<String, dynamic>.from(e as Map)).toList() ?? [],
+      periods: (map['periods'] as List?)?.map((e) => Map<String, dynamic>.from(e as Map)).toList() ?? [],
+      categoryItems: (map['categoryItems'] as List?)?.map((e) => Map<String, dynamic>.from(e as Map)).toList() ?? [],
       showAvailableQuantity: map['showAvailableQuantity'] ?? false,
     );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'quantity': quantity,
+      'name': name,
+      'photos': photos,
+      'items': items,
+      'periods': periods,
+      'categoryItems': categoryItems,
+      'showAvailableQuantity': showAvailableQuantity,
+    };
   }
 }
