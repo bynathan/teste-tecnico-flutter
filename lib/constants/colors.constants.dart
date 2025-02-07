@@ -18,24 +18,14 @@ class AppColors {
 
   static const Color secoundary = Color(0xFFE1E1E1);
   static const Color secoundary900 = Color(0xFFC2C2C2);
+  static const Color secoundary800 = Color(0xFFF0F0F0);
   static const Color secoundary50 = Color(0xFF979596);
 
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
   static const Color gray = Color(0xFFF7F8FA);
   static const Color text = Color(0xFF3D3D3D);
-  static const Color error = Color(0xFFFF3B30);
   static const Color background = Color(0xFFF7F8FA);
   static const Color yellow = Color(0xFFECB133);
-
-  static const LinearGradient primaryGradient = LinearGradient(
-    colors: [
-      AppColors.primary400,
-      AppColors.primary900,
-    ],
-    begin: Alignment.topCenter,
-    end: Alignment.bottomCenter,
-    stops: [0.0, 1.0],
-    tileMode: TileMode.decal,
-  );
+  static const Color green = Color(0xFF1CB98E);
 }

@@ -15,9 +15,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # iOS icon library
   cupertino_icons: ^1.0.8
+  intl: ^0.18.0  
   flutter_sticky_header: ^0.7.0
+  smooth_page_indicator: ^1.0.0
 
 # Development dependencies
 dev_dependencies:
@@ -38,6 +39,7 @@ flutter:
     - lib/assets/icons/arrow-down-gray-light-icon.svg
     - lib/assets/icons/arrow-down-white-icon.svg
     - 'lib/assets/icons/arrow-right-gray-icon.svg'
+    - 'lib/assets/icons/arrow-right-white-icon.svg'
     - lib/assets/icons/calendar-icon.svg
     - lib/assets/icons/filter-icon.svg
     - lib/assets/icons/flash-icon.svg

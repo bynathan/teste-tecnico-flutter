@@ -1,16 +1,17 @@
+// ignore: depend_on_referenced_packages
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/fonts.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/icons.constants.dart';
 import 'package:flutter_technical_test_motel_list/core/models/filter.model.dart';
-import 'package:flutter_svg/svg.dart';
 
 class FilterItemWidget extends StatefulWidget {
   final int index;
   final Filter filter;
   final Function() onPressed;
 
-  const FilterItemWidget({required this.index, required this.filter, required this.onPressed, Key? key}) : super(key: key);
+  const FilterItemWidget({required this.index, required this.filter, required this.onPressed, super.key});
 
   @override
   State<FilterItemWidget> createState() => _FilterItemStateWidget();
@@ -22,7 +23,7 @@ class _FilterItemStateWidget extends State<FilterItemWidget> {
     return IgnorePointer(
       ignoring: widget.index == 0,
       child: Container(
-        padding: const EdgeInsets.only(right: 10),
+        padding: EdgeInsets.only(left: widget.index == 0 ? 0 : 10),
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
           onTap: (){
