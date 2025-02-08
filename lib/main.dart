@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_technical_test_motel_list/core/providers/motel_provider.dart';
+import 'package:flutter_technical_test_motel_list/core/services/motel_service.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_technical_test_motel_list/constants/colors_constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/fonts_constants.dart';
 import 'package:flutter_technical_test_motel_list/screens/splash_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => MotelState(MotelService(client: http.Client())),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

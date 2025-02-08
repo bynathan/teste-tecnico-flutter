@@ -1,5 +1,5 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter_technical_test_motel_list/core/providers/motel_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_technical_test_motel_list/constants/colors_constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/fonts_constants.dart';
@@ -7,11 +7,11 @@ import 'package:flutter_technical_test_motel_list/constants/icons_constants.dart
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:flutter_technical_test_motel_list/core/models/motel_model.dart';
 import 'package:flutter_technical_test_motel_list/core/models/promotion_model.dart';
-import 'package:flutter_technical_test_motel_list/core/services/motel_service.dart';
 import 'package:flutter_technical_test_motel_list/widgets/dashed_widget.dart';
 import 'package:flutter_technical_test_motel_list/widgets/filters_widget.dart';
 import 'package:flutter_technical_test_motel_list/widgets/motel_widget.dart';
 import 'package:flutter_technical_test_motel_list/widgets/promotion_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -23,38 +23,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  MotelService motelService = MotelService(client: http.Client());
   final PageController _promoController = PageController(viewportFraction: 1.0);
-  
-  bool loading = true;
-  late List<Motel> motels = [];
 
   @override
   void initState() {
     super.initState();
+
     Future.delayed(Duration(seconds: 5), () {
-      _loadMotels();
+      Provider.of<MotelState>(context, listen: false).loadMotels();
     });
-  }
-
-  Future<void> _loadMotels() async {
-    try {
-      setState(() {
-        loading = true;
-      });
-
-      final fetchedMotels = await motelService.fetchMotels();
-
-      setState(() {
-        motels = fetchedMotels;
-        loading = false;
-      });
-    } catch (e) {
-      setState(() {
-        motels = [];
-        loading = false;
-      });
-    }
   }
 
   @override
@@ -80,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisSize: MainAxisSize.max,
         children: [
           _buildRegion(value: 'Zona Norte'),
-          _buildScroll(loading: loading),
+          _buildScroll(),
         ],
       ),
       floatingActionButton: _buildFloatingAction(
@@ -95,9 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Expanded _buildScroll({
-    required bool loading
-  }) {
+  Expanded _buildScroll() {
+    final motelState = Provider.of<MotelState>(context);
+
     return Expanded(
       child: Container(
         width: double.infinity,
@@ -110,14 +87,14 @@ class _HomeScreenState extends State<HomeScreen> {
             topRight: Radius.circular(16),
           ),
         ),
-      child: loading ? _buildLoading() : CustomScrollView(
+      child: motelState.loading ? _buildLoading() : CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
               child: _buildPromotion(),
             ),
             SliverStickyHeader(
               header: FiltersWidgets(),
-              sliver: _buildMotels(motels: motels),
+              sliver: _buildMotels(motels: motelState.motels),
             ),
           ],
         )
