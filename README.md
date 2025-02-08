@@ -16,7 +16,7 @@ Esse projeto foi feito como parte de um teste técnico para mostrar minhas habil
 - **Consumo de API**: Fiz a integração com as APIs que foram fornecidas para pegar os dados de motéis.
 - **Gerenciamento de Estado**: Usei o **Provider** para garantir que a listagem de motéis fosse atualizada corretamente.
 - **Testes**: Implementei testes para garantir que os componentes principais estivessem funcionando bem.
-- **Design**: O design não é uma cópia exata, mas fiz umas adaptações visuais para ficar bonito e fácil de usar.
+- **Design**: O design procurei seguir a risca 100% o layout do app fornecido.
 
 ## Observações 🔍
 
