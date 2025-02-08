@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_technical_test_motel_list/constants/colors_constants.dart';
@@ -346,7 +345,7 @@ class _SuiteWidgetState extends State<SuiteWidget> {
                     ),
                   ),
                   Text(
-                    CurrencyWidget(price).toString(),
+                    currencyWidget(price).toString(),
                     style: TextStyle(
                       fontSize: 26,
                       fontWeight: AppFontWeight.regular,

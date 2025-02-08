@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_technical_test_motel_list/widgets/currency_widget.dart';
@@ -108,7 +107,7 @@ class PromotionWidget extends StatelessWidget {
                           color: AppColors.white,
                         ),
                         Text(
-                          'a partir de ${CurrencyWidget(promotion.price)}',
+                          'a partir de ${currencyWidget(promotion.price)}',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: AppFontWeight.regular,

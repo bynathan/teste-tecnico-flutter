@@ -1,5 +1,5 @@
-// ignore: depend_on_referenced_packages
 import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_technical_test_motel_list/constants/colors_constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/fonts_constants.dart';
@@ -23,7 +23,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  MotelService motelService = MotelService();
+  MotelService motelService = MotelService(client: http.Client());
   final PageController _promoController = PageController(viewportFraction: 1.0);
   
   bool loading = true;
