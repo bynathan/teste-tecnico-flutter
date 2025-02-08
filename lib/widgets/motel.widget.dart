@@ -4,21 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/fonts.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/icons.constants.dart';
+import 'package:flutter_technical_test_motel_list/core/models/motel.model.dart';
 import 'package:flutter_technical_test_motel_list/widgets/suite.widget.dart';
 
-class HotelWidget extends StatefulWidget {
-  final Map<String, dynamic> hotel;
+class MotelWidget extends StatefulWidget {
+  final Motel motel;
 
-  const HotelWidget({
+  const MotelWidget({
     super.key,
-    required this.hotel,
+    required this.motel,
   });
 
   @override
-  State<HotelWidget> createState() => _HotelWidgetState();
+  State<MotelWidget> createState() => _MotelWidgetState();
 }
 
-class _HotelWidgetState extends State<HotelWidget> {
+class _MotelWidgetState extends State<MotelWidget> {
   bool favorite = false;
 
   @override
@@ -33,7 +34,7 @@ class _HotelWidgetState extends State<HotelWidget> {
       child: Column(
         children: [
           _buildHeaderHotel(),
-          SuiteWidget(suites: widget.hotel['suites'])
+          SuiteWidget(suites: widget.motel.suites)
         ],
       ),
     );
@@ -65,7 +66,7 @@ class _HotelWidgetState extends State<HotelWidget> {
           width: 40,
           height: 40,
           child: Image.network(
-            widget.hotel['logo'],
+            widget.motel.logo,
             fit: BoxFit.cover,
           ),
         ),
@@ -91,7 +92,7 @@ class _HotelWidgetState extends State<HotelWidget> {
                     fit: BoxFit.cover,
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      widget.hotel['fantasia'].toLowerCase(),
+                      widget.motel.name.toLowerCase(),
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: AppFontWeight.regular,
@@ -126,7 +127,7 @@ class _HotelWidgetState extends State<HotelWidget> {
         ),
         SizedBox(
           child: Text(
-            widget.hotel['bairro'].toLowerCase(),
+            widget.motel.neighborhood.toLowerCase(),
             style: TextStyle(
               fontSize: 14,
               fontWeight: AppFontWeight.regular,
@@ -159,7 +160,7 @@ class _HotelWidgetState extends State<HotelWidget> {
                   ),
                   SizedBox(width: 2),
                   Text(
-                    widget.hotel['media'].toString(),
+                    widget.motel.rating.toString(),
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: AppFontWeight.semiBold,
@@ -174,7 +175,7 @@ class _HotelWidgetState extends State<HotelWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '${widget.hotel['qtdAvaliacoes']} avalizações',
+                  '${widget.motel.reviewsCount} avalizações',
                   style: TextStyle(
                     fontSize: 13,
                     fontWeight: AppFontWeight.semiBold,

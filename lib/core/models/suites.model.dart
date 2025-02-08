@@ -19,13 +19,13 @@ class Suite {
 
   factory Suite.fromMap(Map<String, dynamic> map) {
     return Suite(
-      quantity: map['quantity'] ?? 0,
-      name: map['name'] ?? '',
-      photos: List<String>.from(map['photos'] ?? []),
-      items: (map['items'] as List?)?.map((e) => Map<String, dynamic>.from(e as Map)).toList() ?? [],
-      periods: (map['periods'] as List?)?.map((e) => Map<String, dynamic>.from(e as Map)).toList() ?? [],
-      categoryItems: (map['categoryItems'] as List?)?.map((e) => Map<String, dynamic>.from(e as Map)).toList() ?? [],
-      showAvailableQuantity: map['showAvailableQuantity'] ?? false,
+      quantity: map['qtd'] ?? 0,
+      name: map['nome'] ?? '',
+      photos: List<String>.from(map['fotos'] ?? []),
+      items: (map['itens'] as List?)?.map((e) => Map<String, dynamic>.from(e as Map)).toList() ?? [],
+      periods: (map['periodos'] as List?)?.map((e) => Map<String, dynamic>.from(e as Map)).toList() ?? [],
+      categoryItems: (map['categoriaItens'] as List?)?.map((e) => Map<String, dynamic>.from(e as Map)).toList() ?? [],
+      showAvailableQuantity: map['exibirQtdDisponiveis'] ?? false,
     );
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter_technical_test_motel_list/core/models/suites.model.dart';
 
-class Hotel {
+class Motel {
   final String logo;
   final double rating;
   final String neighborhood;
@@ -10,7 +10,7 @@ class Hotel {
   final int favoritesCount;
   final int reviewsCount;
 
-  Hotel({
+  Motel({
     required this.logo,
     required this.rating,
     required this.neighborhood,
@@ -21,16 +21,17 @@ class Hotel {
     required this.reviewsCount,
   });
 
-  factory Hotel.fromMap(Map<String, dynamic> map) {
-    return Hotel(
+  factory Motel.fromMap(Map<String, dynamic> map) {
+    print(map);
+    return Motel(
       logo: map['logo'] ?? '',
-      rating: (map['rating'] as num?)?.toDouble() ?? 0.0,
-      neighborhood: map['neighborhood'] ?? '',
-      suites: (map['suites'] as List?)?.map((s) => Suite.fromMap(s)).toList() ?? [],
-      name: map['name'] ?? '',
-      distance: (map['distance'] as num?)?.toDouble() ?? 0.0,
-      favoritesCount: map['favoritesCount'] ?? 0,
-      reviewsCount: map['reviewsCount'] ?? 0,
+      rating: map['media'] ?? 0.0,
+      neighborhood: map['bairro'] ?? '',
+      suites: map['suites'] is List ? (map['suites'] as List).map((s) => Suite.fromMap(s)).toList() : [],
+      name: map['fantasia'] ?? '',
+      distance: map['distancia'] ?? 0.0,
+      favoritesCount: map['qtdFavoritos'] ?? 0,
+      reviewsCount: map['qtdAvaliacoes'] ?? 0,
     );
   }
 
@@ -45,5 +46,10 @@ class Hotel {
       'favoritesCount': favoritesCount,
       'reviewsCount': reviewsCount,
     };
+  }
+
+  @override
+  String toString() {
+    return 'Motel(name: $name, logo: $logo, rating: $rating, neighborhood: $neighborhood, distance: $distance, favoritesCount: $favoritesCount, reviewsCount: $reviewsCount, suites: ${suites.length} suites)';
   }
 }

@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/fonts.constants.dart';
 import 'package:flutter_technical_test_motel_list/constants/icons.constants.dart';
+import 'package:flutter_technical_test_motel_list/core/models/suites.model.dart';
 import 'package:flutter_technical_test_motel_list/screens/items.screen.dart';
 import 'package:flutter_technical_test_motel_list/screens/photos.screen.dart';
 import 'package:flutter_technical_test_motel_list/widgets/currency.widget.dart';
 
 class SuiteWidget extends StatefulWidget {
-  final List<Map<String, dynamic>> suites;
+  final List<Suite> suites;
 
   const SuiteWidget({
     super.key,
@@ -26,7 +27,7 @@ class _SuiteWidgetState extends State<SuiteWidget> {
     final PageController suitesController = PageController(viewportFraction: 0.9);
 
     return SizedBox(
-      height: 400 + (121 * (widget.suites[0]['periodos'].length)).toDouble(),
+      height: 400 + (121 * (widget.suites[0].periods.length)).toDouble(),
       child: PageView.builder(
         controller: suitesController,
         itemCount: widget.suites.length,
@@ -40,10 +41,10 @@ class _SuiteWidgetState extends State<SuiteWidget> {
               children: [
                 _buildSuitePhoto(context, suite: suite),
                 _buildSuiteItems(context, suite: suite),
-                ...suite["periodos"].map((item) => _buildSuiteTimePrice(
+                ...suite.periods.map((item) => _buildSuiteTimePrice(
                   time: item["tempoFormatado"], 
                   price: item["valor"]
-                )).toList(),
+                )),
               ],
             ),
           );
@@ -53,7 +54,7 @@ class _SuiteWidgetState extends State<SuiteWidget> {
   }
 
   Container _buildSuitePhoto(BuildContext context, {
-    required Map<String, dynamic> suite
+    required Suite suite
   }) {
     Size screenSize = MediaQuery.of(context).size;
 
@@ -104,12 +105,12 @@ class _SuiteWidgetState extends State<SuiteWidget> {
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: GestureDetector(
-                  onTap: () => navigateToPhotoGridScreen(context, suite["fotos"], suite["nome"].toLowerCase()),
+                  onTap: () => navigateToPhotoGridScreen(context, suite.photos, suite.name.toLowerCase()),
                   child: SizedBox(
                     height: 225,
                     width: double.infinity,
                     child: Image.network(
-                      suite['fotos'][0],
+                      suite.photos[0],
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -129,13 +130,13 @@ class _SuiteWidgetState extends State<SuiteWidget> {
   }
 
   LayoutBuilder _buildSuiteTitle({
-    required Map<String, dynamic> suite
+    required Suite suite
   }) {
     Size screenSize = MediaQuery.of(context).size;
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final text = suite['nome'].toLowerCase();
+        final text = suite.name.toLowerCase();
         final textStyle = TextStyle(
           fontSize: 22,
           fontWeight: AppFontWeight.regular,
@@ -200,7 +201,7 @@ class _SuiteWidgetState extends State<SuiteWidget> {
   }
 
   GestureDetector _buildSuiteItems(BuildContext context, {
-    required Map<String, dynamic> suite
+    required Suite suite
   }) {
     void navigateToItemsScreen(BuildContext context, List<Map<String, dynamic>> mainItems, List<Map<String, dynamic>> items, String name) {
       Navigator.push(
@@ -224,7 +225,7 @@ class _SuiteWidgetState extends State<SuiteWidget> {
     }
 
     return GestureDetector(
-      onTap: () => navigateToItemsScreen(context, suite["categoriaItens"], suite["itens"], suite["nome"]),
+      onTap: () => navigateToItemsScreen(context, suite.categoryItems, suite.items, suite.name),
       child: Container(
         width: double.infinity,
         margin: EdgeInsets.only(bottom: 4),
@@ -250,7 +251,7 @@ class _SuiteWidgetState extends State<SuiteWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ...suite["categoriaItens"].take(4).map((item) => _buildItem(icon: item["icone"])).toList(),
+                ...suite.categoryItems.take(4).map((item) => _buildItem(icon: item["icone"])),
                 Row(
                   children: [
                     Text(
