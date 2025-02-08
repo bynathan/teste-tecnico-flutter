@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
-import 'package:flutter_technical_test_motel_list/constants/images.constants.dart';
-import 'package:flutter_technical_test_motel_list/screens/home.screen.dart';
+import 'package:flutter_technical_test_motel_list/constants/colors_constants.dart';
+import 'package:flutter_technical_test_motel_list/constants/images_constants.dart';
+import 'package:flutter_technical_test_motel_list/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
-import 'package:flutter_technical_test_motel_list/constants/fonts.constants.dart';
+import 'package:flutter_technical_test_motel_list/constants/colors_constants.dart';
+import 'package:flutter_technical_test_motel_list/constants/fonts_constants.dart';
 
 class ItemsScreen extends StatelessWidget {
   final List<Map<String, dynamic>> mainItems;

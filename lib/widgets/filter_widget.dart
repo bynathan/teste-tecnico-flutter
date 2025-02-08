@@ -1,10 +1,10 @@
 // ignore: depend_on_referenced_packages
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
-import 'package:flutter_technical_test_motel_list/constants/fonts.constants.dart';
-import 'package:flutter_technical_test_motel_list/constants/icons.constants.dart';
-import 'package:flutter_technical_test_motel_list/core/models/filter.model.dart';
+import 'package:flutter_technical_test_motel_list/constants/colors_constants.dart';
+import 'package:flutter_technical_test_motel_list/constants/fonts_constants.dart';
+import 'package:flutter_technical_test_motel_list/constants/icons_constants.dart';
+import 'package:flutter_technical_test_motel_list/core/models/filter_model.dart';
 
 class FilterItemWidget extends StatefulWidget {
   final int index;

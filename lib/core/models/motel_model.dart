@@ -1,4 +1,4 @@
-import 'package:flutter_technical_test_motel_list/core/models/suites.model.dart';
+import 'package:flutter_technical_test_motel_list/core/models/suites_model.dart';
 
 class Motel {
   final String logo;

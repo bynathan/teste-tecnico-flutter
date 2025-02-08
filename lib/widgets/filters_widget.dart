@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
-import 'package:flutter_technical_test_motel_list/core/models/filter.model.dart';
-import 'package:flutter_technical_test_motel_list/widgets/filter.widget.dart';
+import 'package:flutter_technical_test_motel_list/constants/colors_constants.dart';
+import 'package:flutter_technical_test_motel_list/core/models/filter_model.dart';
+import 'package:flutter_technical_test_motel_list/widgets/filter_widget.dart';
 
 class FiltersWidgets extends StatefulWidget {
   final bool? loading;

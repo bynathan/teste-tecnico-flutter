@@ -1,17 +1,17 @@
 // ignore: depend_on_referenced_packages
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
-import 'package:flutter_technical_test_motel_list/constants/fonts.constants.dart';
-import 'package:flutter_technical_test_motel_list/constants/icons.constants.dart';
+import 'package:flutter_technical_test_motel_list/constants/colors_constants.dart';
+import 'package:flutter_technical_test_motel_list/constants/fonts_constants.dart';
+import 'package:flutter_technical_test_motel_list/constants/icons_constants.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
-import 'package:flutter_technical_test_motel_list/core/models/motel.model.dart';
-import 'package:flutter_technical_test_motel_list/core/models/promotion.model.dart';
-import 'package:flutter_technical_test_motel_list/core/services/motel.service.dart';
-import 'package:flutter_technical_test_motel_list/widgets/dashed.widget.dart';
-import 'package:flutter_technical_test_motel_list/widgets/filters.widget.dart';
-import 'package:flutter_technical_test_motel_list/widgets/motel.widget.dart';
-import 'package:flutter_technical_test_motel_list/widgets/promotion.widget.dart';
+import 'package:flutter_technical_test_motel_list/core/models/motel_model.dart';
+import 'package:flutter_technical_test_motel_list/core/models/promotion_model.dart';
+import 'package:flutter_technical_test_motel_list/core/services/motel_service.dart';
+import 'package:flutter_technical_test_motel_list/widgets/dashed_widget.dart';
+import 'package:flutter_technical_test_motel_list/widgets/filters_widget.dart';
+import 'package:flutter_technical_test_motel_list/widgets/motel_widget.dart';
+import 'package:flutter_technical_test_motel_list/widgets/promotion_widget.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

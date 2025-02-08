@@ -1,11 +1,11 @@
 // ignore: depend_on_referenced_packages
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_technical_test_motel_list/constants/colors.constants.dart';
-import 'package:flutter_technical_test_motel_list/constants/fonts.constants.dart';
-import 'package:flutter_technical_test_motel_list/constants/icons.constants.dart';
-import 'package:flutter_technical_test_motel_list/core/models/motel.model.dart';
-import 'package:flutter_technical_test_motel_list/widgets/suite.widget.dart';
+import 'package:flutter_technical_test_motel_list/constants/colors_constants.dart';
+import 'package:flutter_technical_test_motel_list/constants/fonts_constants.dart';
+import 'package:flutter_technical_test_motel_list/constants/icons_constants.dart';
+import 'package:flutter_technical_test_motel_list/core/models/motel_model.dart';
+import 'package:flutter_technical_test_motel_list/widgets/suite_widget.dart';
 
 class MotelWidget extends StatefulWidget {
   final Motel motel;
