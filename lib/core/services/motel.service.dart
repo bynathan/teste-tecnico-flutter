@@ -10,7 +10,9 @@ class MotelService {
 
       if (response.statusCode == 200) {
         Map<String, dynamic> body = json.decode(response.body);
+
         List<dynamic> data = body["data"]["moteis"];
+        
         return data.map((motel) => Motel.fromMap(motel)).toList();
       } else {
         throw Exception('Falha ao carregar motéis');

@@ -25,27 +25,35 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   MotelService motelService = MotelService();
   final PageController _promoController = PageController(viewportFraction: 1.0);
-
-  late List<Motel> hotels = [];
+  
+  bool loading = true;
+  late List<Motel> motels = [];
 
   @override
   void initState() {
-    _loadMotels();
     super.initState();
+    Future.delayed(Duration(seconds: 5), () {
+      _loadMotels();
+    });
   }
 
   Future<void> _loadMotels() async {
     try {
-      final fetchedMotels = await motelService.fetchMotels();
       setState(() {
-        hotels = fetchedMotels;
+        loading = true;
       });
-     
-      for (var motel in hotels) {
-        print(motel.toString());  // Exibe todos os valores de cada Motel
-      }
+
+      final fetchedMotels = await motelService.fetchMotels();
+
+      setState(() {
+        motels = fetchedMotels;
+        loading = false;
+      });
     } catch (e) {
-      print("Erro ao carregar os motéis: $e");
+      setState(() {
+        motels = [];
+        loading = false;
+      });
     }
   }
 
@@ -72,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisSize: MainAxisSize.max,
         children: [
           _buildRegion(value: 'Zona Norte'),
-          _buildScroll(),
+          _buildScroll(loading: loading),
         ],
       ),
       floatingActionButton: _buildFloatingAction(
@@ -87,7 +95,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Expanded _buildScroll() {
+  Expanded _buildScroll({
+    required bool loading
+  }) {
     return Expanded(
       child: Container(
         width: double.infinity,
@@ -100,17 +110,17 @@ class _HomeScreenState extends State<HomeScreen> {
             topRight: Radius.circular(16),
           ),
         ),
-        child: true ? CustomScrollView(
+      child: loading ? _buildLoading() : CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
               child: _buildPromotion(),
             ),
             SliverStickyHeader(
               header: FiltersWidgets(),
-              sliver: _buildMotels(motels: hotels),
+              sliver: _buildMotels(motels: motels),
             ),
           ],
-        ) : _buildLoading()
+        )
       ),
     );
   }

@@ -22,7 +22,6 @@ class Motel {
   });
 
   factory Motel.fromMap(Map<String, dynamic> map) {
-    print(map);
     return Motel(
       logo: map['logo'] ?? '',
       rating: map['media'] ?? 0.0,
@@ -46,10 +45,5 @@ class Motel {
       'favoritesCount': favoritesCount,
       'reviewsCount': reviewsCount,
     };
-  }
-
-  @override
-  String toString() {
-    return 'Motel(name: $name, logo: $logo, rating: $rating, neighborhood: $neighborhood, distance: $distance, favoritesCount: $favoritesCount, reviewsCount: $reviewsCount, suites: ${suites.length} suites)';
   }
 }

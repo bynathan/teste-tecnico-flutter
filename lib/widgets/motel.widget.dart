@@ -33,21 +33,21 @@ class _MotelWidgetState extends State<MotelWidget> {
       ),
       child: Column(
         children: [
-          _buildHeaderHotel(),
+          _buildHeaderMotel(),
           SuiteWidget(suites: widget.motel.suites)
         ],
       ),
     );
   }
 
-  Container _buildHeaderHotel() {
+  Container _buildHeaderMotel(){
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 15),
       margin: EdgeInsets.only(bottom: 22),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildHotelLogo(),
+          _buildMotelLogo(),
           SizedBox(width: 15),
           _buildHotemDetails(),
           SizedBox(width: 15),
@@ -57,7 +57,7 @@ class _MotelWidgetState extends State<MotelWidget> {
     );
   }
 
-  Container _buildHotelLogo() {
+  Container _buildMotelLogo() {
     return Container(
       margin: EdgeInsets.only(top: 11),
       child: ClipRRect(
