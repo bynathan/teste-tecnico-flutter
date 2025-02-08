@@ -4,7 +4,9 @@ import 'package:flutter_technical_test_motel_list/core/models/filter.model.dart'
 import 'package:flutter_technical_test_motel_list/widgets/filter.widget.dart';
 
 class FiltersWidgets extends StatefulWidget {
-  const FiltersWidgets({super.key});
+  final bool? loading;
+
+  const FiltersWidgets({super.key, this.loading});
 
   @override
   State<FiltersWidgets> createState() => _FiltersWidgetsState();
@@ -52,14 +54,18 @@ class _FiltersWidgetsState extends State<FiltersWidgets> {
           padding: EdgeInsets.symmetric(horizontal: 15),
           itemBuilder: (context, index) {
             final filter = filterList[index];
-            return FilterItemWidget(
-              index: index,
-              filter: filter,
-              onPressed: () {
-                setState(() {
-                  filter.isSelected = !filter.isSelected;
-                });
-              },
+            return IgnorePointer(
+              ignoring: widget.loading ?? false,
+              child: FilterItemWidget(
+                loading: widget.loading ?? false,
+                index: index,
+                filter: filter,
+                onPressed: () {
+                  setState(() {
+                    filter.isSelected = !filter.isSelected;
+                  });
+                },
+              ),
             );
           },
         ),

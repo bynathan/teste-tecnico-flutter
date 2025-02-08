@@ -10,6 +10,7 @@ import 'package:flutter_technical_test_motel_list/widgets/dashed.widget.dart';
 import 'package:flutter_technical_test_motel_list/widgets/filters.widget.dart';
 import 'package:flutter_technical_test_motel_list/widgets/hotel.widget.dart';
 import 'package:flutter_technical_test_motel_list/widgets/promotion.widget.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -1160,7 +1161,7 @@ class _HomeScreenState extends State<HomeScreen> {
             topRight: Radius.circular(16),
           ),
         ),
-        child: CustomScrollView(
+        child: true ? CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
               child: _buildPromotion(),
@@ -1170,9 +1171,59 @@ class _HomeScreenState extends State<HomeScreen> {
               sliver: _buildHotels(hotels: hotels),
             ),
           ],
+        ) : _buildLoading()
+      ),
+    );
+  }
+
+  Widget _buildShimmerBox({double height = 100, double width = double.infinity, double borderRadius = 8}) {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!, 
+      highlightColor: Colors.grey[100]!, 
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
       ),
     );
+  }
+
+  SingleChildScrollView _buildLoading() {
+    return SingleChildScrollView(
+        child: Column(
+          children: [
+            FiltersWidgets(loading: true),
+            SizedBox(height: 25),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildShimmerBox(height: 40, width: 40, borderRadius: 40),
+                      SizedBox(width: 15),
+                      Expanded(
+                        child: _buildShimmerBox(height: 90, width: double.infinity, borderRadius: 8)
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  _buildShimmerBox(height: 285, width: double.infinity, borderRadius: 8),
+                  SizedBox(height: 5),
+                  _buildShimmerBox(height: 100, width: double.infinity, borderRadius: 8),
+                  SizedBox(height: 5),
+                  _buildShimmerBox(height: 100, width: double.infinity, borderRadius: 8),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
   }
 
   SliverList _buildHotels({
