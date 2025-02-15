@@ -2,6 +2,12 @@
 
 Esse projeto foi feito como parte de um teste técnico para mostrar minhas habilidades no desenvolvimento de apps com Flutter. A ideia era criar uma tela de listagem de motéis (a aba "Ir Agora") do app Guia de Motéis GO, usando dados de duas APIs mock.
 
+        
+
+https://github.com/user-attachments/assets/f1d5342f-ceaa-4c06-b01d-48d1518a1206
+
+
+
 ## Tecnologias Usadas ⚙️
 
 - **Flutter**: Framework que usei para desenvolver o app.
