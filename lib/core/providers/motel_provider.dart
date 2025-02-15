@@ -15,7 +15,7 @@ class MotelState with ChangeNotifier {
 
   Future<void> loadMotels() async {
     _loading = true;
-    notifyListeners(); // Notifica a UI que o loading começou
+    notifyListeners();
 
     try {
       _motels = await _motelService.fetchMotels();
@@ -24,6 +24,6 @@ class MotelState with ChangeNotifier {
     }
 
     _loading = false;
-    notifyListeners(); // Notifica a UI que o loading terminou
+    notifyListeners();
   }
 }
