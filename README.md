@@ -6,6 +6,8 @@ Esse projeto foi feito como parte de um teste técnico para mostrar minhas habil
 
 https://github.com/user-attachments/assets/f1d5342f-ceaa-4c06-b01d-48d1518a1206
 
+Link do video com maior qualidade: https://vimeo.com/manage/videos/1057104148/3c6c4da4b5
+
 
 
 ## Tecnologias Usadas ⚙️
