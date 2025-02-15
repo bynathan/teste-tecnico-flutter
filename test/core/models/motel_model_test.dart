@@ -17,7 +17,6 @@ void main() {
 
       final motel = Motel.fromMap(map);
 
-      // Nomes genéricos no teste
       expect(motel.logo, 'link');
       expect(motel.rating, 0.0);
       expect(motel.neighborhood, '');
@@ -42,7 +41,6 @@ void main() {
 
       final map = motel.toMap();
 
-      // Nomes genéricos no teste
       expect(map['logo'], 'link');
       expect(map['rating'], 0.0);
       expect(map['neighborhood'], '');
@@ -67,7 +65,6 @@ void main() {
 
       final motel = Motel.fromMap(map);
 
-      // Nomes genéricos no teste
       expect(motel.logo, 'link');
       expect(motel.rating, 0.0);
       expect(motel.neighborhood, '');
